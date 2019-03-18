@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+
+    <constant name="struts.multipart.maxSize" value="900000000"/>
+      
+	<package name="default" namespace="/" extends="json-default">
+	<!-- 登录拦截 -->
+			<interceptors>
+                <interceptor name="myInterceptor" class="com.filter.SuccessInterceptor"></interceptor>
+                <interceptor-stack name="myStack">
+                    <interceptor-ref name="myInterceptor"></interceptor-ref>
+                    <interceptor-ref name="defaultStack"></interceptor-ref>
+                </interceptor-stack>
+            </interceptors>
+            <default-interceptor-ref name="myStack"></default-interceptor-ref>
+            <global-results>
+				<result name="login">/WEB-INF/page/login.jsp</result>
+            </global-results>
+            
+		<action name="login" class="com.action.LoginAction" method="{1}">
+			 <result name="index">/WEB-INF/page/index.jsp</result> 
+			 <result name="login">/WEB-INF/page/login.jsp</result>
+			 <result name="ifc">/WEB-INF/page/ifc/ifc.jsp</result>
+			 <result name="ifc_moblie">/WEB-INF/page/moblie/ifc_moblie.jsp</result>
+			 <!-- <result name="resudata" type="json">
+				<param name="root">resudata</param>
+			</result> -->
+			<result name="findData" type="json">
+				<param name="root">msgMap</param>
+			</result>
+		</action>
+		<action name="*project" class="com.action.ProjectAction" method="{1}">
+			<result name="findPjList">/WEB-INF/page/project/welcome.jsp</result>
+			<result name="findPjById">/WEB-INF/page/project/project_update.jsp</result>
+			<result name="deletePj" type="json">
+				<param name="root">flag</param>
+			</result>
+			<result name="saveOrUpdatePj" type="json">
+				<param name="root">flag</param>
+			</result>
+			
+			<result name="findBudgetList">/WEB-INF/page/budget/budget_list.jsp</result>
+			<result name="deleteBudget" type="json">
+				<param name="root">flag</param>
+			</result>
+		</action>
+		<!-- Voucher 凭证管理  -->
+		<action name="Voucher" class="com.action.VoucherAction" method="{1}">
+		
+		<!-- 查询凭证 -->
+			<result name="vouchernull" type="json">
+				<param name="root">msgMap</param>
+			</result>
+			<result name="voucherManagementList">/WEB-INF/page/voucher/voucher_management_list.jsp</result>
+
+			<result name="assistNext" type="json">
+				<param name="root">flag</param>
+			</result>
+			<result name="vouvhertranssuccess" type="json">
+				<param name="root">msgMap</param>
+			</result>
+			<result name="savesuccess" type="json">
+				<param name="root">flag</param>
+			</result>
+			<!-- action -->
+			<result name="addVoucherPage">/WEB-INF/page/voucher/voucher_add.jsp</result>
+			<!-- 辅助核算添加凭证 -->
+			<!-- <result name="addAssistVoucher">/WEB-INF/page/voucher/assistVoucher_add.jsp</result> -->
+			<result name="addAssistVoucher">/WEB-INF/page/voucher/addVoucher.jsp</result>
+			<!-- 编辑 -->
+			<result name="editAssistVoucher">/WEB-INF/page/voucher/editVoucher.jsp</result>
+			<!-- 查看 -->
+			<result name="viewAssistVoucher">/WEB-INF/page/voucher/viewVoucher.jsp</result>
+			
+		    <!-- 添加凭证 -->
+			<result name="insertVoucher">/WEB-INF/page/project/project_list.jsp</result>
+			<!-- 查询凭证 -->
+			<result name="selectVoucher">/WEB-INF/page/voucher/Voucher.jsp</result>
+			<!-- 预算凭证 -->
+			<result name="selectBudgetVoucher">/WEB-INF/page/voucher/budgetVoucher_list.jsp</result>
+			<!-- 财务凭证 -->
+			<result name="selectAccountingVoucher">/WEB-INF/page/voucher/accountingVoucher_list.jsp</result>
+		    <!-- 旧记账凭证 -->
+			<result name="selectOldAccountingVoucher">/WEB-INF/page/voucher/oldAccountingVoucher_list.jsp</result>
+			<!-- 记账凭证  -->
+			<!-- <result name="accountShow">/WEB-INF/page/voucher/accountShow_list.jsp</result> -->
+			<result name="accountShow">/WEB-INF/page/voucher/showAccountList.jsp</result>
+			<result name="noChangeAccountShow">/WEB-INF/page/voucher/NoChangeAccountList.jsp</result>
+            <!-- 凭证详情  -->
+			<result name="voucherDetails">/WEB-INF/page/voucher/voucher_show.jsp</result>
+			<!-- <result name="voucherDetail">/WEB-INF/page/voucher/voucherDetail.jsp</result> -->
+			<result name="voucherDetail">/WEB-INF/page/voucher/viewVoucher.jsp</result>
+			<!-- <result name="voucherDetails1">/WEB-INF/page/voucher/voucher_show.jsp</result> -->
+			<!-- 凭证详情  -->
+			<result name="test">/WEB-INF/page/test.jsp
+			</result>
+		    <result name="msg" type="json" >
+				<param name="root">msg</param>
+				<param name="contentType">text/html;charset=UTF-8</param>
+			</result>
+			<result name="message" type="json">
+				<param name="root">message</param>
+			</result>
+			<result name="jsonmap" type="json">
+				<param name="root">jsonmap</param>
+			</result>
+			
+			<result name="deleteMap" type="json">
+				<param name="root">deleteMap</param>
+			</result>
+			<result name="deletebudget" type="json">
+				<param name="root">msgMap</param>
+			</result>
+			 <result name="upMap" type="json">
+				<param name="root">uploadMap</param>
+			</result> 
+			
+			<result name="accountList" type="json">
+				<param name="root">jsonmap</param>
+			</result>
+			<result name="findData" type="json">
+				<param name="root">kmList</param>
+			</result>
+			<result name="saveStatus" type="json">
+				<param name="root">msgMap</param>
+			</result>
+			<result name="budget" type="json">
+				<param name="root">budgetVouchers</param>
+			</result>
+		</action>
+		
+		<action name="export" class="com.action.ExportAction">
+		</action>
+		
+		<!-- subject 科目-->
+	    <action name="newSubject" class="com.action.NewSubjectAction"
+			method="{1}">
+			<!-- 查询会计科目 -->
+			<result name="accountingSubjectList" type="json">
+				<param name="root">jsonmap</param>
+  			</result>
+  			<result name="deleteMap" type="json">
+				<param name="root">deleteMap</param>
+			</result>
+			<!-- <result name="selectSubject">/WEB-INF/page/subject/accounting_subjects_list.jsp</result> -->
+			 <!-- <result name="selectSubjectss">/WEB-INF/page/subject/accounting_subjects_list.jsp
+			</result> -->
+			<result name="fut">/WEB-INF/page/subject/newsubject-list.jsp
+			</result> 
+			<result name="selectNewSubject">/WEB-INF/page/subject/accounting_subjects_list.jsp
+			</result> 
+			 <result name="selectSubject">/WEB-INF/page/subject/newsubject-list.jsp
+			</result>
+			<result name="selectSubjects">/WEB-INF/page/subject/accounting_subjects_list.jsp</result>
+			
+			<!--  <result name="selectNewSubject">/WEB-INF/page/subject/accounting_subjects_list.jsp</result> -->
+			<!-- 人员列表 -->
+			<!-- <result name="newSubjectTree">/WEB-INF/page/subject/tree.jsp</result> -->
+			 <result name="newSubjectTree">/WEB-INF/page/subject/tree.jsp</result>
+		<!-- 	<result name="selectSubjects">/WEB-INF/page/subject/accounting_subjects_list.jsp
+			</result> -->
+			
+			<result name="jsonmap" type="json">
+				<param name="root">jsonmap</param>
+			</result>
+			<result name="addNewAccount">/WEB-INF/page/subject/addNewAccount.jsp</result>
+
+			<result name="updateNewAccount">/WEB-INF/page/subject/updateNewAccount.jsp
+			</result>
+			<result name="msg" type="json">
+				<param name="root">msg</param>
+				<param name="contentType">text/html;charset=UTF-8</param>
+			</result>
+			<result name="success" type="json">
+				<param name="root">treeStr</param>
+				<param name="contentType">text/html;charset=UTF-8</param>
+			</result>
+			<result name="updateAccount">/WEB-INF/page/subject/newsubject-list.jsp
+			</result>
+			<result name="updateBudget">/WEB-INF/page/subject/newsubject-list.jsp
+			</result>
+			<result name="listd">/WEB-INF/page/subject/accounting_subjects_list.jsp
+			</result>
+		</action>
+		<action name="oldSubject" class="com.action.OldSubjectAction" method="{1}">
+			<result name="selectOldSubject">/WEB-INF/page/subject/oldsubject-list.jsp</result>
+		</action>
+
+
+				<!-- 本年盈余和预算盈余 -->
+		<action name="profit" class="com.action.ProfitActoin" method="{1}">
+		  <result name="profit">/WEB-INF/page/budget/profit_lib.jsp</result>
+		</action>
+		<!-- basis 基础模块配置 -->
+	     <action name="basis" class="com.action.BasisAction" method="{1}">
+		    <!-- 人员列表-->
+			<result name="personelList">/WEB-INF/page/basis/admin_list.jsp</result>
+			<result name="departmentList">/WEB-INF/page/basis/department-list.jsp</result>
+			<result name="addpers">/WEB-INF/page/basis/admin_add.jsp</result>
+			<result name="updatepers">/WEB-INF/page/basis/admin_edit.jsp</result>
+			<result name="savenpers" type="json">
+				<param name="root">flag</param>
+			</result>
+				<result name="success" type="json">
+				<param name="root">flag</param>
+			</result>
+			<result name="PersonAction" type="json">
+				<param name="root">jsonmap</param>
+			</result>
+		<result name="deleteMap" type="json">
+				<param name="root">deleteMap</param>
+			</result>
+		</action>
+		
+		<action name="documentConversion" class="com.action.DocumentConversionAction" method="{1}">
+		</action>
+		
+		<action name="subjectDetails" class="com.action.SubjectDetailsAction" method="{1}">
+		</action>
+		
+		<!-- 课题模块配置 -->
+		<action name="topic" class="com.action.TopicAction" method="{1}">
+		  <result name="topicList">/WEB-INF/page/topic/topic_list.jsp</result> 
+		</action>
+		<!-- 收入费用 -->
+		<action name="incom" class="com.action.IncoMcostActoin" method="{1}">
+		  <result name="finbymct">/WEB-INF/page/budget/Incomecost.jsp</result>
+		</action>
+		<!-- 预算收支 -->
+		<action name="budgetary" class="com.action.BudgetAction" method="{1}">
+		  <result name="budgetRevenue">/WEB-INF/page/budget/liabilities.jsp</result> 
+		   <!-- 净资产变动表 -->
+		  <result name="carryoverB">/WEB-INF/page/budget/carryover-balances.jsp</result> 
+		</action>
+		<!-- 收入支出决算 -->
+		<action name="account" class="com.action.AccountAction" method="{1}">
+		  <result name="srzcjsb">/template/department_master/srzcjsb.jsp</result> 
+		</action>
+		
+		<action name="final" class="com.action.FinalAccountsAction" method="{1}">
+		</action>
+		
+		<action name="voucherRules" class="com.action.VoucherRulesAction" method="{1}">
+			<result name="findRulesList">/WEB-INF/page/rules/rules_list.jsp</result>
+			<result name="findRulesById">/WEB-INF/page/rules/rules_update.jsp</result>
+			<result name="msg" type="json">
+				<param name="root">msg</param>
+				<param name="contentType">text/html;charset=UTF-8</param>
+			</result>
+		</action>
+		<!-- 课题 -->
+		<action name="policy" class="com.action.PolicyAction" method="{1}">
+		  <result name="selectPolicy">/WEB-INF/page/policy/policy-list.jsp</result>
+		</action>
+		
+		<!-- 支出分类 -->
+		<action name="paySubject" class="com.action.PaySubjectAction" method="{1}">
+			<result name="msg" type="json" >
+				<param name="root">msg</param>
+				<param name="contentType">text/html;charset=UTF-8</param>
+			</result>
+			<result name="PaySubjectAct" type="json">
+				<param name="root">jsonmap</param>
+  			</result>
+  			<result name="deleteMap" type="json">
+				<param name="root">deleteMap</param>
+			</result>
+			<!-- 经济 -->
+			 <result name="addEconomictype">/WEB-INF/page/pay/addeconomictype.jsp</result>
+			<!-- 经济添加 -->
+			<result name="addEconomictypes" type="json">
+				<param name="root">flag</param>
+			</result>
+			<result name="updatEeconomictype">/WEB-INF/page/pay/updateEconomictype.jsp</result>
+		
+			<result name="updatEeconomictypes">/WEB-INF/page/pay/updateEconomictype.jsp</result>
+			<result name="addFunctionType" type="json">
+				<param name="root">flag</param>
+			</result>
+			<result name="addfunction">/WEB-INF/page/pay/addfunctiontypea.jsp</result>
+			<!-- 修改 -->
+			 <result name="updateFunctionType">/WEB-INF/page/pay/updatefunctiontypea.jsp</result>
+			<!-- 修改页面 -->
+			 <result name="updatefunction">/WEB-INF/page/pay/updatefunctiontypea.jsp</result>
+			
+			
+<!-- 			<result name="assistAccountAdd">/WEB-INF/page/subject/addNewAccount.jsp</result>
+ -->			
+		 	<result name="assistAccountAdd" type="json">
+				<param name="root">flag</param>
+			</result> 
+			
+			<result name="assistAccountAddd" type="json">
+				<param name="root">flag</param>
+			</result> 
+			
+			
+			<result name="assistAccountAdddd" type="json">
+				<param name="root">flag</param>
+			</result> 
+			
+			
+			
+			<result name="findPaySubject">/WEB-INF/page/pay/tree.jsp</result>
+			
+			<result name="success" type="json">
+				<param name="root">treeStr</param>
+				<param name="contentType">text/html;charset=UTF-8</param>
+			</result>
+			
+			<result name="functiontype">/WEB-INF/page/pay/functiontype-list.jsp</result>
+			<result name="economictype">/WEB-INF/page/pay/economictype-list.jsp</result>
+			<result name="assistAccount">/WEB-INF/page/assistaccount/assistAccount.jsp</result>
+		</action>
+		<!-- 用户角色 -->		
+		<action name="userRoles" class="com.action.UserRolesAction" method="{1}">
+				  <result name="showUserRolesList">/WEB-INF/page/userRoles/showUserRolesList.jsp</result> 
+				  <result name="addUserRoles">/WEB-INF/page/userRoles/addUserRole.jsp</result> 
+				  <result name="editUserRoles">/WEB-INF/page/userRoles/editUserRole.jsp</result> 
+				  <result name="viewUserRole">/WEB-INF/page/userRoles/viewUserRole.jsp</result> 
+			<result name="jsonmap" type="json">
+				<param name="root">jsonmap</param>
+			</result>
+		</action>
+		
+		<!-- 记账凭证 -->
+		<action name="Recording" class="com.action.RecordingVoucherAction" method="{1}">
+			<result name="accountShow">/WEB-INF/page/voucher/showAccountList.jsp</result>
+			<result name="addAssistVoucher">/WEB-INF/page/voucher/addVoucher.jsp</result>
+		</action>
+		<!-- 记账凭证信息管理 -->
+		<action name="voucherInfo" class="com.action.VoucherInfoAction" method="{1}">
+			<result name="voucherDataInfo">/WEB-INF/page/voucher/voucherDataInfo.jsp</result>
+			<result name="editVoucherInfo">/WEB-INF/page/voucher/editVoucherInfo.jsp</result>
+			<result name="voucherInfoList" type="json">
+				<param name="root">jsonmap</param>
+			</result>
+		</action>
+		<!-- 菜单管理 -->
+		<action name="menu" class="com.action.MenuAction" method="{1}">
+			<result name="showMenuList">/WEB-INF/page/menu/showMenuList.jsp</result>
+			<result name="showMenuData">/WEB-INF/page/menu/showMenuData.jsp</result>
+			<result name="addMenu">/WEB-INF/page/menu/addMenu.jsp</result>
+			<result name="editMenu">/WEB-INF/page/menu/editMenu.jsp</result>
+			<result name="viewMenu">/WEB-INF/page/menu/viewMenu.jsp</result>
+			
+			
+			<result name="jsonmap" type="json">
+				<param name="root">jsonmap</param>
+			</result>
+		</action>
+		<!-- 凭证转换 -->
+		<action name="change" class="com.action.VoucherChangeAction" method="{1}">
+			<result name="budget" type="json">
+				<param name="root">map</param>
+			</result>		
+			<result name="voucherDataInfo">/WEB-INF/page/voucher/voucherDataInfo.jsp</result>
+			<result name="editVoucherInfo">/WEB-INF/page/voucher/editVoucherInfo.jsp</result>
+			<result name="voucherInfoList" type="json">
+				<param name="root">jsonmap</param>
+			</result>
+		</action>
+		<!-- 新凭证转换tcp -->
+		<action name="tcpAction" class="com.action.MyClientAction" method="{1}">
+			<result name="budget" type="json">
+				<param name="root">jsonmap</param>
+			</result>
+		</action>
+		<!-- 用户管理 -->
+		<!-- <action name="person" class="com.action.PersonaAction" method="{1}">
+			<result name="showPersonList">/WEB-INF/page/person/showPersonList.jsp</result>
+			
+			
+			
+			<result name="jsonmap" type="json">
+				<param name="root">jsonmap</param>
+			</result>
+		</action> -->
+		
+		<!-- 资产负债表 -->
+		<action name="asset" class="com.action.AssetAction" method="{1}">
+			<result name="assetReport">/WEB-INF/page/report/assetReport.jsp</result>
+		
+			<result name="budget" type="json">
+				<param name="root">budgetVouchers</param>
+			</result>
+			
+			<result name="editVoucherInfo">/WEB-INF/page/voucher/editVoucherInfo.jsp</result>
+			<result name="voucherInfoList" type="json">
+				<param name="root">jsonmap</param>
+			</result>
+		</action>
+		<!-- 预算结转结余变动表 -->
+		<action name="surplus" class="com.action.SurplusAction" method="{1}">
+			<result name="surplusReport">/WEB-INF/page/report/surplusReport.jsp</result>
+		</action>
+		<action name="financi" class="com.action.FinAllAction" method="{1}">
+			<result name="financialallocation">/WEB-INF/page/budget/financialallocation.jsp</result>
+		</action>
+		<!-- 现金流量表 -->
+		<action name="cash" class="com.action.CashAction" method="{1}">
+			<result name="cashReport">/WEB-INF/page/report/cashReport.jsp</result>
+		
+		</action>
+	</package>
+
+</struts>    

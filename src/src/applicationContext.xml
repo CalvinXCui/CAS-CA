@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd 
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+	
+	http://www.springframework.org/schema/jee 
+	http://www.springframework.org/schema/jee/spring-jee-3.1.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<!-- 加载属性文件 -->
+	<bean id="config"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:jdbc.properties</value>
+		</property>
+	</bean>
+
+	<!-- 数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="url" value="${url}"></property>
+		<property name="driverClassName" value="${driver}"></property>
+		<property name="username" value="${username}"></property>
+		<property name="password" value="${password}"></property>
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					${dialect}
+				</prop>
+
+				<!-- 打印SQL语句 -->
+				<prop key="hibernate.show_sql">${show_sql}</prop>
+				<prop key="hibernate.format_sql">${format_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+
+				<!-- 连接设置 -->
+				<prop key="hibernate.maxActive">10000</prop>
+				<prop key="hibernate.maxIdle">200</prop>
+				<prop key="hibernate.minIdle">100</prop>
+				<prop key="hibernate.initialSize">50</prop>
+				<prop key="hibernate.maxWait">2000</prop>
+			</props>
+		</property>
+
+		<property name="mappingResources">
+			<list>
+				<value>com/entity/AccountingVoucher.hbm.xml</value>
+				<value>com/entity/Budget.hbm.xml</value>
+				<value>com/entity/BudgetVoucher.hbm.xml</value>
+				<value>com/entity/Department.hbm.xml</value>
+				<value>com/entity/NewSubject.hbm.xml</value>
+				<value>com/entity/OldAccountingVoucher.hbm.xml</value>
+				<value>com/entity/OldSubject.hbm.xml</value>
+				<value>com/entity/ProjectInformation.hbm.xml</value>
+				<value>com/entity/ProjectInfo.hbm.xml</value>
+				<value>com/entity/SubjectItem.hbm.xml</value>
+				<value>com/entity/DocumentConversion.hbm.xml</value>
+				<value>com/entity/SubjectDetails.hbm.xml</value>
+				<value>com/entity/Topic.hbm.xml</value>
+				<value>com/entity/Budgetary.hbm.xml</value>
+				<value>com/entity/Account.hbm.xml</value>
+				<value>com/entity/BudgetSubject.hbm.xml</value>
+				<value>com/entity/AccountingSubject.hbm.xml</value>
+				<value>com/entity/VoucherRules.hbm.xml</value>
+				<value>com/entity/PaySubject.hbm.xml</value>
+				<value>com/entity/Person.hbm.xml</value>
+				<value>com/entity/Menu.hbm.xml</value>
+				<value>com/entity/UserRoles.hbm.xml</value>
+				<value>com/entity/RoleToMenu.hbm.xml</value>
+				<value>com/entity/UserToRoleUsers.hbm.xml</value>
+				<value>com/entity/AccountTitle.hbm.xml</value>
+				<value>com/entity/VoucherInfo.hbm.xml</value>
+				<value>com/entity/VoucherRuleBudget.hbm.xml</value>
+				<value>com/entity/VoucherRuleName.hbm.xml</value>
+				<value>com/entity/RecordingVoucher.hbm.xml</value>
+				<value>com/entity/BalanceReport.hbm.xml</value>
+				<value>com/entity/SurplusReport.hbm.xml</value>
+			</list>
+		</property>
+
+	</bean>
+
+	<!-- <context:component-scan base-package="com"> <context:include-filter 
+		type="regex" expression="com.action.*"/> <context:include-filter type="regex" 
+		expression="com.dao.*"/> <context:include-filter type="regex" expression="com.dao.impl.*"/> 
+		<context:include-filter type="regex" expression="com.emtity.*"/> <context:include-filter 
+		type="regex" expression="com.service.*"/> </context:component-scan> -->
+	<!-- <context:component-scan base-package="com.action.*"></context:component-scan> 
+		<context:component-scan base-package="com.dao.*"></context:component-scan> 
+		<context:component-scan base-package="com.dao.impl.*"></context:component-scan> 
+		<context:component-scan base-package="com.emtity.*"></context:component-scan> 
+		<context:component-scan base-package="com.service.*"></context:component-scan> 
+		<context:component-scan base-package="com.service.impl.*"></context:component-scan> -->
+
+	<import resource="applicationContext-dao.xml" />
+	<import resource="applicationContext-service.xml" />
+	<import resource="applicationContext-action.xml" />
+
+</beans>

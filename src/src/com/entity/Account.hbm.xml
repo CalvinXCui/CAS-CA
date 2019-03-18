@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.entity.Account" table="account" catalog="zdh_pzgl">
+        <id name="id" type="java.lang.String">
+            <column name="ID" length="50" />
+            <generator class="uuid"></generator>
+        </id>
+        <property name="topName" type="java.lang.String">
+            <column name="TOP_NAME">
+                <comment>表头名称</comment>
+            </column>
+        </property>
+		 <property name="state" type="java.lang.String">
+            <column name="STATE">
+                <comment>状态</comment>
+            </column>
+        </property>
+        <property name="orderId" type="java.lang.Integer">
+            <column name="ORDER_ID">
+                <comment>排序</comment>
+            </column>
+        </property>
+        <property name="projectNum" type="java.lang.String">
+            <column name="PROJECT_NUM">
+                <comment>支出功能分类科目编码</comment>
+            </column>
+        </property>
+        <property name="projectName" type="java.lang.String">
+            <column name="PROJECT_NAME">
+                <comment>科目名称</comment>
+            </column>
+        </property>
+       
+        <property name="add1" type="java.lang.String">
+            <column name="ADD1">
+                <comment>合计</comment>
+            </column>
+        </property>
+         <property name="basePay1" type="java.lang.String">
+            <column name="BASE_PAY1">
+                <comment>基本支出结转</comment>
+            </column>
+        </property>
+         <property name="projectBalance1" type="java.lang.String">
+            <column name="PROJECT_BALANCE1">
+                <comment>项目支出结转和结余</comment>
+            </column>
+        </property>
+         <property name="manageBalance1" type="java.lang.String">
+            <column name="MANAGE_BALANCE1">
+                <comment>经营结余</comment>
+            </column>
+        </property>
+         <property name="yearAdd" type="java.lang.String">
+            <column name="YEAR_ADD">
+                <comment>本年收入</comment>
+            </column>
+        </property>
+         <property name="yearPay" type="java.lang.String">
+            <column name="YEAR_PAY">
+                <comment>本年支出</comment>
+            </column>
+        </property>
+         <property name="add2" type="java.lang.String">
+            <column name="ADD2">
+                <comment>合计</comment>
+            </column>
+        </property>
+         <property name="basePay2" type="java.lang.String">
+            <column name="BASE_PAY2">
+                <comment>基本支出结转</comment>
+            </column>
+        </property>
+         <property name="projectBalance2" type="java.lang.String">
+            <column name="PROJECT_BALANCE2">
+                <comment>项目支出结转和结余</comment>
+            </column>
+        </property>
+         <property name="manageBalance2" type="java.lang.String">
+            <column name="MANAGE_BALANCE2">
+                <comment>经营结余</comment>
+            </column>
+        </property>
+         <property name="margin" type="java.lang.String">
+            <column name="MARGIN">
+                <comment>用事业基金弥补收支差额</comment>
+            </column>
+        </property>
+         <property name="add3" type="java.lang.String">
+            <column name="ADD3">
+                <comment>合计</comment>
+            </column>
+        </property>
+         <property name="tax" type="java.lang.String">
+            <column name="TAX">
+                <comment>交纳所得税</comment>
+            </column>
+        </property>
+         <property name="welfare" type="java.lang.String">
+            <column name="WELFARE">
+                <comment>提取职工福利基金</comment>
+            </column>
+        </property>
+         <property name="career" type="java.lang.String">
+            <column name="CAREER">
+                <comment>转入事业基金</comment>
+            </column>
+        </property>
+         <property name="other" type="java.lang.String">
+            <column name="OTHER">
+                <comment>其他</comment>
+            </column>
+        </property>
+         <property name="add4" type="java.lang.String">
+            <column name="ADD4">
+                <comment>合计</comment>
+            </column>
+        </property>
+         <property name="basePay4" type="java.lang.String">
+            <column name="BASE_PAY4">
+                <comment>基本支出结转</comment>
+            </column>
+        </property>
+         <property name="projectBalance4" type="java.lang.String">
+            <column name="PROJECT_BALANCE4">
+                <comment>项目支出结转和结余</comment>
+            </column>
+        </property>
+         <property name="manageBalance4" type="java.lang.String">
+            <column name="MANAGE_BALANCE4">
+                <comment>经营结余</comment>
+            </column>
+        </property>
+        
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.entity.BalanceReport" table="balance_report" catalog="zdh_pzgl">
+        <id name="id" type="java.lang.String">
+            <column name="ID" length="50" />
+            <generator class="uuid"></generator>
+        </id>
+        <property name="columnOne" type="java.lang.String">
+            <column name="COLUMN_ONE">
+                <comment>报表第一列数据</comment>
+            </column>
+        </property>
+        <property name="columnTwo" type="java.lang.String">
+            <column name="COLUMN_TWO">
+                <comment>报表第二列数据</comment>
+            </column>
+        </property>
+        <property name="columnThree" type="java.lang.String">
+            <column name="COLUMN_THREE">
+                <comment>报表第三列数据</comment>
+            </column>
+        </property>
+        <property name="columnFour" type="java.lang.String">
+            <column name="COLUMN_FOUR">
+                <comment>报表第四列数据</comment>
+            </column>
+        </property>
+        <property name="beginDataOne" type="java.lang.String">
+            <column name="BEGINDATA_ONE">
+                <comment>年初余额-资产</comment>
+            </column>
+        </property>
+        <property name="beginDataTwo" type="java.lang.String">
+            <column name="BEGINDATA_TWO">
+                <comment>年初余额-负债</comment>
+            </column>
+        </property>
+        <property name="createTime" type="java.lang.String">
+            <column name="CREATE_TIME">
+                <comment>创建时间</comment>
+            </column>
+        </property>
+        <property name="dataType" type="java.lang.String">
+            <column name="DATA_TYPE">
+                <comment>数据类型</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

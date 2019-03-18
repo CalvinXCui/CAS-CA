@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.entity.Menu" table="menu" catalog="zdh_pzgl">
+        <id name="aId" type="java.lang.String">
+            <column name="AID" />
+            <generator class="uuid"></generator>
+        </id>
+        <property name="id" type="java.lang.String">
+            <column name="ID">
+                <comment>ID</comment>
+            </column>
+        </property>
+        <property name="pId" type="java.lang.String">
+            <column name="P_ID">
+                <comment>父节点ID</comment>
+            </column>
+        </property>
+        <property name="name" type="java.lang.String">
+            <column name="NAME">
+                <comment>节点名称</comment>
+            </column>
+        </property>
+        <property name="menuLevel" type="java.lang.String">
+            <column name="MENU_LEVEL">
+                <comment>菜单级别</comment>
+            </column>
+        </property>
+        <property name="menuNameLevel" type="java.lang.String">
+            <column name="MENU_NAME_LEVEL">
+                <comment>菜单</comment>
+            </column>
+        </property>
+        <property name="menuCode" type="java.lang.String">
+            <column name="MENU_CODE">
+                <comment>code码</comment>
+            </column>
+        </property>
+        <property name="menuUrl" type="java.lang.String">
+            <column name="MENU_URL">
+                <comment>菜单级别</comment>
+            </column>
+        </property>
+        <property name="roleId" type="java.lang.String">
+            <column name="ROLE_ID">
+                <comment>角色ID</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>
